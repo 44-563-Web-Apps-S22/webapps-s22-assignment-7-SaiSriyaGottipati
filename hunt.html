@@ -144,5 +144,12 @@
            return 0
   
          }
+
+         function reset() {
+            shakeCount = 0;
+            birdLocation = Math.floor(Math.random() * 25);
+            document.getElementById("shakes").innerHTML = "Number of shakes is " + shakeCount;
+        }
+
   </script>
 </html>
