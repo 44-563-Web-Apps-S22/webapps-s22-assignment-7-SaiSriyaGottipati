@@ -89,43 +89,47 @@
         
     </div>
 </body>
-<button type="button" class="btn btn-primary" onclick="reset()">Reset</button>
 <script>
-    let ids = ["0", "1", "2", "3", "4", "5", "6", "7", "8",
-        "9", "10", "11", "12", "13", "14", "15", "16",
-        "17", "18", "19", "20", "21", "22", "23", "24"];
-    let shakeCount = 0;
-    let birdLocation = 18;
+    var ids = ["id0", "id1", "id2", "id3", "id4", "id5", "id6", "id7", "id8", "id9", "id10", "id11", "id12", "id13", "id14", "id15", "id16", "id17", "id18", "id19", "id20", "id21", "id22", "id23", "id24"]
+    var shakeCount = 0
+    var birdLocation = Math.floor(Math.random() * 25);
+
     function check(position) {
-        let id = ids[position];
-        let image = document.getElementById(position);
-        if (position == birdLocation) {
-            image.src = "goose1.jpg";
-        } else {
-            image.src = "nest.jpg";
-        }
-        shakeCount++;
+        id = ids[position]
+        img_pos = document.getElementById(id)
+        if (position == birdLocation)
+            img_pos.src = "goose1.jpg"
+        else
+            img_pos.src = "nest.jpg"
+
+        shakeCount = shakeCount + 1
         document.getElementById("shakes").innerHTML = "Number of shakes is " + shakeCount;
-        document.getElementById("score").innerHTML = "Location score : " + locationScore(position, birdLocation);
+        document.getElementById("score").innerHTML = "The score is " + locationScore(position, birdLocation);
+    }
+
+    function reset(){
+        shakeCount = 0;
+        document.getElementById("shakes").innerHTML = "Number of shakes is " + shakeCount;
+        birdLocation = Math.floor(Math.random() * 25);
     }
 
     function locationScore(pos1, pos2) {
-        let row1, row2, col1, col2;
-        let grid = [[0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14], [15, 16, 17, 18, 19], [20, 21, 22, 23, 24]];
-        for (let row = 0; row < grid.length; row++) {
-            for (let col = 0; col < grid[row].length; col++) {
-                if (pos1 == grid[row][col]) {
-                    row1 = row;
-                    col1 = col;
+        var row1, row2, col1, col2
+        var data = [[0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14], [15, 16, 17, 18, 19], [20, 21, 22, 23, 24]]
+        for (let x = 0; x < data.length; x++) {
+            for (let y = 0; y < data[x].length; y++) {
+                if (pos1 == data[x][y]) {
+                    row1 = x
+                    col1 = y
                 }
             }
         }
 
-        for (let row = 0; row < grid.length; row++) {
-            for (let col = 0; col < grid[row].length; col++) {
-                if (pos2 == grid[row][col]) {
-                    row2 = row;
-                    col2 = col;
+        for (let x = 0; x < data.length; x++) {
+            for (let y = 0; y < data[x].length; y++) {
+                if (pos2 == data[x][y]) {
+                    row2 = x
+                    col2 = y
                 }
             }
         }
@@ -139,8 +143,5 @@
         else
             return 0
     }
-
-        
-
-  </script>
+</script>
 </html>
